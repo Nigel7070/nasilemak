@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malaysian Food Market Analysis</title>
+    <title>Malaysian Food Market Analysis - Enhanced</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * {
@@ -20,7 +20,7 @@
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
         }
         
@@ -35,25 +35,27 @@
         
         .header h1 {
             color: #667eea;
-            font-size: 2.5em;
+            font-size: 2.8em;
             margin-bottom: 10px;
+            font-weight: 700;
         }
         
         .subtitle {
             color: #666;
-            font-size: 1.2em;
+            font-size: 1.3em;
             margin-bottom: 20px;
         }
         
         .verdict {
             display: inline-block;
-            padding: 15px 40px;
+            padding: 18px 45px;
             border-radius: 50px;
-            font-size: 1.5em;
+            font-size: 1.6em;
             font-weight: bold;
             background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
             color: white;
             animation: pulse 2s infinite;
+            box-shadow: 0 5px 15px rgba(17, 153, 142, 0.4);
         }
         
         @keyframes pulse {
@@ -63,100 +65,148 @@
         
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             margin-bottom: 30px;
         }
         
         .stat-card {
             background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             text-align: center;
-            border-left: 5px solid #667eea;
+            border-left: 6px solid #667eea;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
         }
         
         .stat-card h3 {
             color: #667eea;
-            font-size: 1.1em;
-            margin-bottom: 15px;
+            font-size: 1.2em;
+            margin-bottom: 18px;
+            font-weight: 600;
         }
         
         .stat-card .value {
-            font-size: 2em;
+            font-size: 2.5em;
             font-weight: bold;
             color: #333;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         
         .stat-card .label {
             color: #666;
-            font-size: 0.9em;
+            font-size: 1em;
         }
         
         .chart-controls {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 15px;
             margin-bottom: 30px;
             flex-wrap: wrap;
         }
         
         .chart-btn {
-            padding: 14px 28px;
+            padding: 16px 32px;
             border: none;
-            border-radius: 30px;
+            border-radius: 35px;
             background: white;
             color: #667eea;
             font-weight: bold;
+            font-size: 1.05em;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .chart-btn:hover {
             background: #667eea;
             color: white;
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
         
         .chart-btn.active {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .view-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .view-btn {
+            padding: 12px 24px;
+            border: 2px solid white;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .view-btn:hover {
+            background: white;
+            color: #667eea;
+            transform: scale(1.05);
+        }
+        
+        .view-btn.active {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.5);
         }
         
         .chart-container {
             background: white;
-            padding: 35px;
+            padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             margin-bottom: 25px;
         }
         
         .chart-title {
-            font-size: 1.8em;
+            font-size: 2em;
             color: #333;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             text-align: center;
             font-weight: 600;
         }
         
+        .chart-wrapper {
+            position: relative;
+            height: 700px;
+        }
+        
         canvas {
-            max-height: 500px;
+            max-height: 700px;
         }
         
         .insights {
             background: white;
-            padding: 30px;
+            padding: 35px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
         .insights h2 {
             color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.8em;
+            margin-bottom: 25px;
+            font-size: 2em;
+            font-weight: 600;
         }
         
         .insights ul {
@@ -165,20 +215,28 @@
         }
         
         .insights li {
-            padding: 12px 0;
+            padding: 15px 0;
             border-bottom: 1px solid #eee;
-            font-size: 1.1em;
+            font-size: 1.15em;
             color: #333;
+            line-height: 1.6;
         }
         
         .insights li:before {
             content: "📊 ";
-            margin-right: 10px;
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+        
+        .insights li:last-child {
+            border-bottom: none;
         }
         
         @media (max-width: 768px) {
-            .header h1 { font-size: 1.8em; }
-            .verdict { font-size: 1.2em; padding: 12px 30px; }
+            .header h1 { font-size: 2em; }
+            .subtitle { font-size: 1.1em; }
+            .verdict { font-size: 1.3em; padding: 15px 35px; }
+            .chart-wrapper { height: 500px; }
         }
     </style>
 </head>
@@ -187,28 +245,28 @@
         <div class="header">
             <h1>🍽️ Malaysian Food Market Analysis</h1>
             <p class="subtitle">Is Nasi Lemak Really the Best Seller in Malaysia?</p>
-            <div class="verdict" id="verdict">✅ YES! Nasi Lemak is #1 in Malaysia!</div>
+            <div class="verdict">✅ YES! Nasi Lemak is #1 in Malaysia!</div>
         </div>
 
         <div class="stats-grid">
             <div class="stat-card">
                 <h3>🏆 National Champion</h3>
-                <div class="value" id="champion">Nasi Lemak</div>
-                <div class="label" id="championVol">106,159k monthly</div>
+                <div class="value">Nasi Lemak</div>
+                <div class="label">106,159k monthly</div>
             </div>
             <div class="stat-card">
                 <h3>📈 Market Share</h3>
-                <div class="value" id="share">28.82%</div>
+                <div class="value">28.82%</div>
                 <div class="label">of total monthly volume</div>
             </div>
             <div class="stat-card">
                 <h3>🗺️ States Won</h3>
-                <div class="value" id="states">13/16</div>
+                <div class="value">13/16</div>
                 <div class="label">states dominated</div>
             </div>
             <div class="stat-card">
                 <h3>📊 Lead Margin</h3>
-                <div class="value" id="margin">+5.60%</div>
+                <div class="value">+5.60%</div>
                 <div class="label">ahead of 2nd place</div>
             </div>
         </div>
@@ -220,9 +278,17 @@
             <button class="chart-btn" onclick="showChart('battle')">⚔️ Nasi vs Roti</button>
         </div>
 
+        <div class="view-controls" id="viewControls" style="display: none;">
+            <button class="view-btn active" onclick="changeView('overlapped')">📊 Overlapped</button>
+            <button class="view-btn" onclick="changeView('sideBySide')">⚖️ Side-by-Side</button>
+            <button class="view-btn" onclick="changeView('diverging')">🔀 Diverging</button>
+        </div>
+
         <div class="chart-container">
             <div class="chart-title" id="chartTitle">National Food Category Comparison</div>
-            <canvas id="myChart"></canvas>
+            <div class="chart-wrapper">
+                <canvas id="myChart"></canvas>
+            </div>
         </div>
 
         <div class="insights">
@@ -230,9 +296,10 @@
             <ul>
                 <li>Nasi Lemak leads nationally with 106,159k monthly volume (28.82% market share)</li>
                 <li>Nasi Lemak wins in 13 out of 16 states</li>
-                <li>Lead margin over Roti Canai: +5.60%</li>
+                <li>Lead margin over Roti Canai: +5.60% (5,612k units ahead)</li>
                 <li>States where Roti Canai wins: Johor, Penang</li>
-                <li>Closest competition: Johor (Roti Canai leads by 246k)</li>
+                <li>Closest competition: Johor (Roti Canai leads by 246k units)</li>
+                <li>Selangor is the biggest market with 90,476k total monthly volume</li>
             </ul>
         </div>
     </div>
@@ -258,13 +325,33 @@
         ];
 
         let currentChart;
+        let currentChartType = 'comparison';
+        let currentView = 'overlapped';
         const ctx = document.getElementById('myChart');
 
+        // Better colors with high contrast
+        const colors = {
+            nasiLemak: '#E63946',      // Bold Red
+            rotiCanai: '#1D3557',      // Navy Blue
+            nasiGoreng: '#F77F00',     // Orange
+            charKueyTeow: '#06A77D',   // Green
+            satay: '#9D4EDD',          // Purple
+            other: '#457B9D'           // Steel Blue
+        };
+
         function showChart(type) {
+            currentChartType = type;
             document.querySelectorAll('.chart-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
             if (currentChart) currentChart.destroy();
+
+            // Show view controls only for battle chart
+            if (type === 'battle') {
+                document.getElementById('viewControls').style.display = 'flex';
+            } else {
+                document.getElementById('viewControls').style.display = 'none';
+            }
 
             switch(type) {
                 case 'comparison':
@@ -286,6 +373,13 @@
             }
         }
 
+        function changeView(view) {
+            currentView = view;
+            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            drawBattle();
+        }
+
         function drawComparison() {
             const totals = {
                 'Nasi Lemak': data.reduce((sum, d) => sum + d.nasiLemak, 0),
@@ -303,14 +397,54 @@
                     datasets: [{
                         label: 'Monthly Volume (k)',
                         data: Object.values(totals),
-                        backgroundColor: ['#FF6B6B', '#4ECDC4', '#FFE66D', '#95E1D3', '#F38181', '#AA96DA']
+                        backgroundColor: [
+                            colors.nasiLemak,
+                            colors.rotiCanai,
+                            colors.nasiGoreng,
+                            colors.charKueyTeow,
+                            colors.satay,
+                            colors.other
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
                     }]
                 },
                 options: {
                     indexAxis: 'y',
                     responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: { legend: { display: false } }
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            padding: 15,
+                            titleFont: { size: 16, weight: 'bold' },
+                            bodyFont: { size: 14 },
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.x.toLocaleString() + 'k units';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            ticks: {
+                                font: { size: 13 },
+                                callback: function(value) {
+                                    return value.toLocaleString() + 'k';
+                                }
+                            }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: {
+                                font: { size: 14, weight: 'bold' },
+                                padding: 10
+                            }
+                        }
+                    }
                 }
             });
         }
@@ -331,14 +465,37 @@
                     labels: Object.keys(totals),
                     datasets: [{
                         data: Object.values(totals),
-                        backgroundColor: ['#FF6B6B', '#4ECDC4', '#FFE66D', '#95E1D3', '#F38181', '#AA96DA']
+                        backgroundColor: Object.values(colors),
+                        borderWidth: 3,
+                        borderColor: '#fff'
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                     plugins: {
-                        legend: { position: 'bottom' }
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 14 },
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            padding: 15,
+                            titleFont: { size: 16, weight: 'bold' },
+                            bodyFont: { size: 14 },
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.parsed.toLocaleString();
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                    return label + ': ' + value + 'k (' + percentage + '%)';
+                                }
+                            }
+                        }
                     }
                 }
             });
@@ -352,39 +509,322 @@
                 data: {
                     labels: top10.map(d => d.state),
                     datasets: [
-                        { label: 'Nasi Lemak', data: top10.map(d => d.nasiLemak), backgroundColor: '#FF6B6B' },
-                        { label: 'Roti Canai', data: top10.map(d => d.rotiCanai), backgroundColor: '#4ECDC4' },
-                        { label: 'Nasi Goreng', data: top10.map(d => d.nasiGoreng), backgroundColor: '#FFE66D' },
-                        { label: 'Char Kuey Teow', data: top10.map(d => d.charKueyTeow), backgroundColor: '#95E1D3' },
-                        { label: 'Satay', data: top10.map(d => d.satay), backgroundColor: '#F38181' },
-                        { label: 'Other', data: top10.map(d => d.other), backgroundColor: '#AA96DA' }
+                        {
+                            label: 'Nasi Lemak',
+                            data: top10.map(d => d.nasiLemak),
+                            backgroundColor: colors.nasiLemak,
+                            borderWidth: 0
+                        },
+                        {
+                            label: 'Roti Canai',
+                            data: top10.map(d => d.rotiCanai),
+                            backgroundColor: colors.rotiCanai,
+                            borderWidth: 0
+                        },
+                        {
+                            label: 'Nasi Goreng',
+                            data: top10.map(d => d.nasiGoreng),
+                            backgroundColor: colors.nasiGoreng,
+                            borderWidth: 0
+                        },
+                        {
+                            label: 'Char Kuey Teow',
+                            data: top10.map(d => d.charKueyTeow),
+                            backgroundColor: colors.charKueyTeow,
+                            borderWidth: 0
+                        },
+                        {
+                            label: 'Satay',
+                            data: top10.map(d => d.satay),
+                            backgroundColor: colors.satay,
+                            borderWidth: 0
+                        },
+                        {
+                            label: 'Other',
+                            data: top10.map(d => d.other),
+                            backgroundColor: colors.other,
+                            borderWidth: 0
+                        }
                     ]
                 },
                 options: {
                     indexAxis: 'y',
                     responsive: true,
-                    maintainAspectRatio: true,
-                    scales: { x: { stacked: true }, y: { stacked: true } },
-                    plugins: { legend: { position: 'bottom' } }
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: true,
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            ticks: {
+                                font: { size: 13 },
+                                callback: function(value) {
+                                    return value.toLocaleString() + 'k';
+                                }
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            grid: { display: false },
+                            ticks: {
+                                font: { size: 14, weight: 'bold' },
+                                padding: 10
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 13 },
+                                padding: 15,
+                                usePointStyle: true
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            padding: 12,
+                            titleFont: { size: 15 },
+                            bodyFont: { size: 13 }
+                        }
+                    }
                 }
             });
         }
 
         function drawBattle() {
+            if (currentView === 'overlapped') {
+                drawBattleOverlapped();
+            } else if (currentView === 'sideBySide') {
+                drawBattleSideBySide();
+            } else if (currentView === 'diverging') {
+                drawBattleDiverging();
+            }
+        }
+
+        function drawBattleOverlapped() {
             currentChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: data.map(d => d.state),
                     datasets: [
-                        { label: 'Nasi Lemak', data: data.map(d => d.nasiLemak), backgroundColor: '#FF6B6B' },
-                        { label: 'Roti Canai', data: data.map(d => d.rotiCanai), backgroundColor: '#4ECDC4' }
+                        {
+                            label: 'Nasi Lemak',
+                            data: data.map(d => d.nasiLemak),
+                            backgroundColor: colors.nasiLemak,
+                            borderWidth: 2,
+                            borderColor: '#fff',
+                            barThickness: 25
+                        },
+                        {
+                            label: 'Roti Canai',
+                            data: data.map(d => d.rotiCanai),
+                            backgroundColor: colors.rotiCanai,
+                            borderWidth: 2,
+                            borderColor: '#fff',
+                            barThickness: 25
+                        }
                     ]
                 },
                 options: {
                     indexAxis: 'y',
                     responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: { legend: { position: 'top' } }
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: { size: 16, weight: 'bold' },
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.9)',
+                            padding: 15,
+                            titleFont: { size: 16, weight: 'bold' },
+                            bodyFont: { size: 14 },
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.x.toLocaleString() + 'k';
+                                },
+                                afterLabel: function(context) {
+                                    const dataIndex = context.dataIndex;
+                                    const nasiLemak = data[dataIndex].nasiLemak;
+                                    const rotiCanai = data[dataIndex].rotiCanai;
+                                    const diff = nasiLemak - rotiCanai;
+                                    const winner = diff > 0 ? 'Nasi Lemak' : 'Roti Canai';
+                                    return '🏆 Winner: ' + winner + ' (+' + Math.abs(diff).toLocaleString() + 'k)';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            ticks: {
+                                font: { size: 13 },
+                                callback: function(value) {
+                                    return value.toLocaleString() + 'k';
+                                }
+                            }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: {
+                                font: { size: 15, weight: '600' },
+                                padding: 12
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function drawBattleSideBySide() {
+            currentChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.map(d => d.state),
+                    datasets: [
+                        {
+                            label: 'Nasi Lemak',
+                            data: data.map(d => d.nasiLemak),
+                            backgroundColor: colors.nasiLemak,
+                            borderWidth: 0,
+                            barPercentage: 0.9,
+                            categoryPercentage: 0.8
+                        },
+                        {
+                            label: 'Roti Canai',
+                            data: data.map(d => d.rotiCanai),
+                            backgroundColor: colors.rotiCanai,
+                            borderWidth: 0,
+                            barPercentage: 0.9,
+                            categoryPercentage: 0.8
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: { size: 16, weight: 'bold' },
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.9)',
+                            padding: 15,
+                            titleFont: { size: 16, weight: 'bold' },
+                            bodyFont: { size: 14 },
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.x.toLocaleString() + 'k';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            ticks: {
+                                font: { size: 13 },
+                                callback: function(value) {
+                                    return value.toLocaleString() + 'k';
+                                }
+                            }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: {
+                                font: { size: 15, weight: '600' },
+                                padding: 12
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function drawBattleDiverging() {
+            // Create diverging data
+            const divergingData = data.map(d => {
+                const diff = d.nasiLemak - d.rotiCanai;
+                return {
+                    state: d.state,
+                    nasiLemakDiff: diff > 0 ? diff : 0,
+                    rotiCanaiDiff: diff < 0 ? Math.abs(diff) : 0
+                };
+            });
+
+            currentChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: divergingData.map(d => d.state),
+                    datasets: [
+                        {
+                            label: 'Nasi Lemak Lead',
+                            data: divergingData.map(d => d.nasiLemakDiff),
+                            backgroundColor: colors.nasiLemak,
+                            borderWidth: 0
+                        },
+                        {
+                            label: 'Roti Canai Lead',
+                            data: divergingData.map(d => -d.rotiCanaiDiff),
+                            backgroundColor: colors.rotiCanai,
+                            borderWidth: 0
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: { size: 16, weight: 'bold' },
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.9)',
+                            padding: 15,
+                            titleFont: { size: 16, weight: 'bold' },
+                            bodyFont: { size: 14 },
+                            callbacks: {
+                                label: function(context) {
+                                    const value = Math.abs(context.parsed.x);
+                                    return context.dataset.label + ': ' + value.toLocaleString() + 'k ahead';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            ticks: {
+                                font: { size: 13 },
+                                callback: function(value) {
+                                    return Math.abs(value).toLocaleString() + 'k';
+                                }
+                            }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: {
+                                font: { size: 15, weight: '600' },
+                                padding: 12
+                            }
+                        }
+                    }
                 }
             });
         }
