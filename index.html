@@ -20,6 +20,12 @@
             --lighter-blue: #DBEAFE;
             --lightest-blue: #EFF6FF;
             
+            /* Exception Red Palette */
+            --exception-red: #EF4444;
+            --exception-red-dark: #DC2626;
+            --exception-red-light: #FEE2E2;
+            --exception-red-lighter: #FEF2F2;
+            
             /* Neutrals */
             --white: #FFFFFF;
             --gray-50: #F9FAFB;
@@ -220,6 +226,120 @@
             color: var(--gray-500);
         }
         
+        /* EXCEPTION SECTION */
+        .exception-section {
+            background: var(--white);
+            padding: var(--space-5);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+            border-left: 6px solid var(--exception-red);
+            margin-bottom: var(--space-4);
+        }
+        
+        .exception-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-4);
+        }
+        
+        .exception-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--exception-red-lighter);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .exception-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--exception-red-dark);
+        }
+        
+        .exception-subtitle {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: var(--space-4);
+        }
+        
+        .exception-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-3);
+        }
+        
+        .exception-card {
+            background: var(--exception-red-lighter);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--exception-red-light);
+        }
+        
+        .exception-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-2);
+        }
+        
+        .exception-state {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        
+        .exception-winner-badge {
+            background: var(--exception-red);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .exception-numbers {
+            margin: var(--space-2) 0;
+        }
+        
+        .exception-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-1) 0;
+            font-size: 14px;
+        }
+        
+        .exception-row.winner {
+            font-weight: 600;
+            color: var(--exception-red-dark);
+        }
+        
+        .exception-margin {
+            margin-top: var(--space-2);
+            padding-top: var(--space-2);
+            border-top: 1px solid var(--exception-red-light);
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+        
+        .exception-margin strong {
+            color: var(--exception-red-dark);
+        }
+        
+        .exception-reason {
+            margin-top: var(--space-2);
+            padding: var(--space-2);
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            color: var(--gray-700);
+            line-height: 1.5;
+        }
+        
         /* CHART SECTION */
         .chart-section {
             background: var(--white);
@@ -372,6 +492,11 @@
             background: var(--gray-50);
             border-radius: var(--radius-md);
             border-left: 3px solid var(--primary-blue);
+        }
+        
+        .insight-item.exception {
+            background: var(--exception-red-lighter);
+            border-left: 3px solid var(--exception-red);
         }
         
         .insight-item p {
@@ -598,6 +723,24 @@
             background: var(--gray-50);
         }
         
+        tbody tr.exception-row {
+            background: var(--exception-red-lighter);
+        }
+        
+        tbody tr.exception-row:hover {
+            background: var(--exception-red-light);
+        }
+        
+        tbody tr.exception-row td:first-child {
+            font-weight: 600;
+            color: var(--exception-red-dark);
+        }
+        
+        tbody tr.exception-row td:first-child:before {
+            content: "⚠️ ";
+            margin-right: 6px;
+        }
+        
         tfoot {
             background: var(--lightest-blue);
             font-weight: 600;
@@ -668,6 +811,10 @@
                 width: 100%;
                 justify-content: center;
             }
+            
+            .exception-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -714,7 +861,7 @@
                 <div class="stat-card">
                     <div class="stat-icon">🗺️</div>
                     <div class="stat-label">States Dominated</div>
-                    <div class="stat-value">13/16</div>
+                    <div class="stat-value">14/16</div>
                     <div class="stat-subtitle">Nasi Lemak wins</div>
                 </div>
                 
@@ -723,6 +870,73 @@
                     <div class="stat-label">Lead Margin</div>
                     <div class="stat-value">+5.58%</div>
                     <div class="stat-subtitle">ahead of 2nd place</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXCEPTION SECTION -->
+        <div class="exception-section">
+            <div class="exception-header">
+                <div class="exception-icon">⚠️</div>
+                <div>
+                    <h2 class="exception-title">Exception: Where Nasi Lemak Loses</h2>
+                    <p class="exception-subtitle">Only 2 out of 16 states prefer Roti Canai over Nasi Lemak</p>
+                </div>
+            </div>
+            
+            <div class="exception-grid">
+                <!-- JOHOR -->
+                <div class="exception-card">
+                    <div class="exception-card-header">
+                        <h3 class="exception-state">🏴 Johor</h3>
+                        <span class="exception-winner-badge">ROTI CANAI WINS</span>
+                    </div>
+                    
+                    <div class="exception-numbers">
+                        <div class="exception-row winner">
+                            <span>🏆 Roti Canai</span>
+                            <span>13,586k</span>
+                        </div>
+                        <div class="exception-row">
+                            <span>Nasi Lemak</span>
+                            <span>13,340k</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exception-margin">
+                        <strong>Margin:</strong> Roti Canai leads by 246k units (+1.8%)
+                    </div>
+                    
+                    <div class="exception-reason">
+                        <strong>Why?</strong> Johor's proximity to Singapore and strong Mamak culture have established Roti Canai as a breakfast staple. The margin is narrow, showing it's a competitive market.
+                    </div>
+                </div>
+                
+                <!-- PENANG -->
+                <div class="exception-card">
+                    <div class="exception-card-header">
+                        <h3 class="exception-state">🏴 Penang</h3>
+                        <span class="exception-winner-badge">ROTI CANAI WINS</span>
+                    </div>
+                    
+                    <div class="exception-numbers">
+                        <div class="exception-row winner">
+                            <span>🏆 Roti Canai</span>
+                            <span>6,466k</span>
+                        </div>
+                        <div class="exception-row">
+                            <span>Nasi Lemak</span>
+                            <span>5,878k</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exception-margin">
+                        <strong>Margin:</strong> Roti Canai leads by 588k units (+10.0%)
+                    </div>
+                    
+                    <div class="exception-reason">
+                        <strong>Why?</strong> Penang's significant Indian community and heritage as a center for Indian-Muslim (Mamak) cuisine has deeply embedded Roti Canai in the local food culture.
+                    </div>
                 </div>
             </div>
         </div>
@@ -773,7 +987,11 @@
                 </div>
                 
                 <div class="insight-item">
-                    <p><strong>Geographic Dominance:</strong> Nasi Lemak wins in 13 out of 16 states, with only Johor and Penang preferring Roti Canai.</p>
+                    <p><strong>Geographic Dominance:</strong> Nasi Lemak wins in 14 out of 16 states, demonstrating true national preference.</p>
+                </div>
+                
+                <div class="insight-item exception">
+                    <p><strong>Regional Exceptions:</strong> Only Johor and Penang prefer Roti Canai, likely due to strong Indian cultural influence and Mamak heritage in these states.</p>
                 </div>
                 
                 <div class="insight-item">
@@ -786,10 +1004,6 @@
                 
                 <div class="insight-item">
                     <p><strong>Top Two Dominance:</strong> Combined Nasi Lemak and Roti Canai account for 56.13% of the entire food market.</p>
-                </div>
-                
-                <div class="insight-item">
-                    <p><strong>Closest Race:</strong> Johor shows tightest competition with Roti Canai leading by only 246k units (1.8% margin).</p>
                 </div>
             </div>
         </div>
@@ -867,7 +1081,7 @@
             </div>
             
             <p style="color: var(--gray-600); margin-bottom: var(--space-3);">
-                All data points used in our analysis (in thousands of units per month)
+                All data points used in our analysis (in thousands of units per month). Exception states highlighted in red.
             </p>
             
             <div class="data-table-wrapper">
@@ -946,12 +1160,12 @@
         // DATA
         const data = [
             { state: 'Selangor', nasiLemak: 26050, rotiCanai: 22619, nasiGoreng: 12667, charKueyTeow: 10857, satay: 5207, other: 13076 },
-            { state: 'Johor', nasiLemak: 13340, rotiCanai: 13586, nasiGoreng: 6917, charKueyTeow: 5929, satay: 2717, other: 6916 },
+            { state: 'Johor', nasiLemak: 13340, rotiCanai: 13586, nasiGoreng: 6917, charKueyTeow: 5929, satay: 2717, other: 6916, exception: true },
             { state: 'Sabah', nasiLemak: 9583, rotiCanai: 8557, nasiGoreng: 4792, charKueyTeow: 4107, satay: 1711, other: 5476 },
             { state: 'Kuala Lumpur', nasiLemak: 8229, rotiCanai: 7143, nasiGoreng: 4000, charKueyTeow: 3429, satay: 1644, other: 4126 },
             { state: 'Sarawak', nasiLemak: 7750, rotiCanai: 6919, nasiGoreng: 3875, charKueyTeow: 3321, satay: 1384, other: 4428 },
             { state: 'Perak', nasiLemak: 7583, rotiCanai: 6771, nasiGoreng: 3792, charKueyTeow: 3250, satay: 1354, other: 4333 },
-            { state: 'Penang', nasiLemak: 5878, rotiCanai: 6466, nasiGoreng: 3292, charKueyTeow: 3682, satay: 1176, other: 3018 },
+            { state: 'Penang', nasiLemak: 5878, rotiCanai: 6466, nasiGoreng: 3292, charKueyTeow: 3682, satay: 1176, other: 3018, exception: true },
             { state: 'Kedah', nasiLemak: 6333, rotiCanai: 5655, nasiGoreng: 3167, charKueyTeow: 2714, satay: 1131, other: 3619 },
             { state: 'Pahang', nasiLemak: 4833, rotiCanai: 4325, nasiGoreng: 2422, charKueyTeow: 2076, satay: 865, other: 2776 },
             { state: 'Kelantan', nasiLemak: 4500, rotiCanai: 4018, nasiGoreng: 2250, charKueyTeow: 1929, satay: 804, other: 2571 },
@@ -962,6 +1176,9 @@
             { state: 'Putrajaya', nasiLemak: 480, rotiCanai: 429, nasiGoreng: 240, charKueyTeow: 206, satay: 86, other: 274 },
             { state: 'Labuan', nasiLemak: 340, rotiCanai: 304, nasiGoreng: 170, charKueyTeow: 146, satay: 61, other: 193 }
         ];
+
+        // Exception states for highlighting
+        const exceptionStates = ['Johor', 'Penang'];
 
         // Professional Blue Color Palette
         const chartColors = {
@@ -1001,8 +1218,10 @@
                 totals.other += row.other;
                 totals.total += total;
 
+                const rowClass = row.exception ? 'exception-row' : '';
+                
                 tbody.innerHTML += `
-                    <tr>
+                    <tr class="${rowClass}">
                         <td><strong>${row.state}</strong></td>
                         <td>${row.nasiLemak.toLocaleString()}k</td>
                         <td>${row.rotiCanai.toLocaleString()}k</td>
@@ -1041,11 +1260,12 @@
         }
 
         function downloadCSV() {
-            let csv = 'State,Nasi Lemak,Roti Canai,Nasi Goreng,Char Kuey Teow,Satay,Other,Total\n';
+            let csv = 'State,Nasi Lemak,Roti Canai,Nasi Goreng,Char Kuey Teow,Satay,Other,Total,Exception\n';
             
             data.forEach(row => {
                 const total = row.nasiLemak + row.rotiCanai + row.nasiGoreng + row.charKueyTeow + row.satay + row.other;
-                csv += `${row.state},${row.nasiLemak},${row.rotiCanai},${row.nasiGoreng},${row.charKueyTeow},${row.satay},${row.other},${total}\n`;
+                const exception = row.exception ? 'Yes' : 'No';
+                csv += `${row.state},${row.nasiLemak},${row.rotiCanai},${row.nasiGoreng},${row.charKueyTeow},${row.satay},${row.other},${total},${exception}\n`;
             });
 
             const blob = new Blob([csv], { type: 'text/csv' });
@@ -1073,8 +1293,8 @@
             const descriptions = {
                 comparison: 'Monthly sales volume across all categories',
                 pie: 'Percentage distribution of market share',
-                states: 'Food category breakdown by top states',
-                battle: 'Direct comparison between top two categories'
+                states: 'Food category breakdown by top states (exception states highlighted)',
+                battle: 'Direct comparison between top two categories (exception states highlighted)'
             };
 
             document.getElementById('chartDescription').textContent = descriptions[type];
@@ -1247,10 +1467,15 @@
         function drawStates() {
             const top10 = data.slice(0, 10);
             
+            // Create labels with exception markers
+            const labels = top10.map(d => {
+                return d.exception ? d.state + ' ⚠️' : d.state;
+            });
+            
             currentChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: top10.map(d => d.state),
+                    labels: labels,
                     datasets: [
                         { label: 'Nasi Lemak', data: top10.map(d => d.nasiLemak), backgroundColor: chartColors.primary, borderWidth: 0 },
                         { label: 'Roti Canai', data: top10.map(d => d.rotiCanai), backgroundColor: chartColors.secondary, borderWidth: 0 },
@@ -1280,8 +1505,19 @@
                             stacked: true,
                             grid: { display: false },
                             ticks: {
-                                font: { size: 13, weight: '500' },
-                                color: '#374151',
+                                font: function(context) {
+                                    const label = context.tick.label;
+                                    const isException = label.includes('⚠️');
+                                    return {
+                                        size: 13,
+                                        weight: '500'
+                                    };
+                                },
+                                color: function(context) {
+                                    const label = context.tick.label;
+                                    const isException = label.includes('⚠️');
+                                    return isException ? '#DC2626' : '#374151';
+                                },
                                 padding: 8
                             }
                         }
@@ -1303,7 +1539,15 @@
                             titleFont: { size: 13 },
                             bodyFont: { size: 12 },
                             borderColor: '#E5E7EB',
-                            borderWidth: 1
+                            borderWidth: 1,
+                            callbacks: {
+                                title: function(context) {
+                                    const index = context[0].dataIndex;
+                                    const state = top10[index].state;
+                                    const isException = top10[index].exception;
+                                    return isException ? state + ' ⚠️ (Exception State)' : state;
+                                }
+                            }
                         }
                     }
                 }
@@ -1321,10 +1565,15 @@
         }
 
         function drawBattleOverlapped() {
+            // Create labels with exception markers
+            const labels = data.map(d => {
+                return d.exception ? d.state + ' ⚠️' : d.state;
+            });
+            
             currentChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: data.map(d => d.state),
+                    labels: labels,
                     datasets: [
                         {
                             label: 'Nasi Lemak',
@@ -1365,6 +1614,12 @@
                             borderColor: '#E5E7EB',
                             borderWidth: 1,
                             callbacks: {
+                                title: function(context) {
+                                    const index = context[0].dataIndex;
+                                    const state = data[index].state;
+                                    const isException = data[index].exception;
+                                    return isException ? state + ' ⚠️ (Exception State)' : state;
+                                },
                                 label: function(context) {
                                     return context.dataset.label + ': ' + context.parsed.x.toLocaleString() + 'k';
                                 },
@@ -1394,7 +1649,11 @@
                             grid: { display: false },
                             ticks: {
                                 font: { size: 13, weight: '500' },
-                                color: '#374151',
+                                color: function(context) {
+                                    const label = context.tick.label;
+                                    const isException = label.includes('⚠️');
+                                    return isException ? '#DC2626' : '#374151';
+                                },
                                 padding: 10
                             }
                         }
@@ -1404,10 +1663,14 @@
         }
 
         function drawBattleSideBySide() {
+            const labels = data.map(d => {
+                return d.exception ? d.state + ' ⚠️' : d.state;
+            });
+            
             currentChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: data.map(d => d.state),
+                    labels: labels,
                     datasets: [
                         {
                             label: 'Nasi Lemak',
@@ -1446,7 +1709,15 @@
                             titleFont: { size: 14, weight: '600' },
                             bodyFont: { size: 13 },
                             borderColor: '#E5E7EB',
-                            borderWidth: 1
+                            borderWidth: 1,
+                            callbacks: {
+                                title: function(context) {
+                                    const index = context[0].dataIndex;
+                                    const state = data[index].state;
+                                    const isException = data[index].exception;
+                                    return isException ? state + ' ⚠️ (Exception State)' : state;
+                                }
+                            }
                         }
                     },
                     scales: {
@@ -1464,7 +1735,11 @@
                             grid: { display: false },
                             ticks: {
                                 font: { size: 13, weight: '500' },
-                                color: '#374151',
+                                color: function(context) {
+                                    const label = context.tick.label;
+                                    const isException = label.includes('⚠️');
+                                    return isException ? '#DC2626' : '#374151';
+                                },
                                 padding: 10
                             }
                         }
@@ -1479,14 +1754,19 @@
                 return {
                     state: d.state,
                     nasiLemakDiff: diff > 0 ? diff : 0,
-                    rotiCanaiDiff: diff < 0 ? Math.abs(diff) : 0
+                    rotiCanaiDiff: diff < 0 ? Math.abs(diff) : 0,
+                    exception: d.exception
                 };
+            });
+            
+            const labels = divergingData.map(d => {
+                return d.exception ? d.state + ' ⚠️' : d.state;
             });
 
             currentChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: divergingData.map(d => d.state),
+                    labels: labels,
                     datasets: [
                         {
                             label: 'Nasi Lemak Lead',
@@ -1527,6 +1807,12 @@
                             borderColor: '#E5E7EB',
                             borderWidth: 1,
                             callbacks: {
+                                title: function(context) {
+                                    const index = context[0].dataIndex;
+                                    const state = divergingData[index].state;
+                                    const isException = divergingData[index].exception;
+                                    return isException ? state + ' ⚠️ (Exception State)' : state;
+                                },
                                 label: function(context) {
                                     const value = Math.abs(context.parsed.x);
                                     return context.dataset.label + ': ' + value.toLocaleString() + 'k ahead';
@@ -1549,7 +1835,11 @@
                             grid: { display: false },
                             ticks: {
                                 font: { size: 13, weight: '500' },
-                                color: '#374151',
+                                color: function(context) {
+                                    const label = context.tick.label;
+                                    const isException = label.includes('⚠️');
+                                    return isException ? '#DC2626' : '#374151';
+                                },
                                 padding: 10
                             }
                         }
